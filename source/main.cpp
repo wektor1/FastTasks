@@ -1,2 +1,8 @@
+#include "BracesValidator.hpp"
+#include <iostream>
 
-int main() { return 0; }
+int main() {
+  BracesValidator validator{""};
+  std::cout << "Validate string \"\": " << validator.isValid() << std::endl;
+  return 0;
+}

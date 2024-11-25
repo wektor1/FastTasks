@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.31)
 
 project(FastTasks)
 
@@ -11,4 +11,7 @@ set(CMAKE_CXX_FLAGS "-g -O0")
 
 add_subdirectory(source)
 
-# add_subdirectory(tests)
+enable_testing()
+find_package(GTest CONFIG REQUIRED)
+
+add_subdirectory(tests)
