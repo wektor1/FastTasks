@@ -2,7 +2,6 @@
 #include <algorithm>
 #include <cassert>
 #include <cstdlib>
-#include <iostream>
 #include <string>
 
 namespace {
@@ -13,19 +12,16 @@ unsigned long HistorianHysteria::run(std::vector<std::string> input) {
   std::sort(leftIds.begin(), leftIds.end());
   std::sort(rightIds.begin(), rightIds.end());
 
-  return calculateDistanceSum();
+  return calculateRepetitionsSum();
 }
 
-unsigned long HistorianHysteria::calculateDistanceSum() {
-  unsigned long sum{0};
+unsigned long HistorianHysteria::calculateRepetitionsSum() {
+  unsigned long reps{0};
   assert(leftIds.size() == rightIds.size());
-  for (int idx = 0; idx < leftIds.size(); idx++) {
-    std::cout << "Line " << idx << ": " << leftIds[idx] << ", " << rightIds[idx]
-              << std::endl;
-    sum += leftIds[idx] > rightIds[idx] ? leftIds[idx] - rightIds[idx]
-                                        : rightIds[idx] - leftIds[idx];
+  for (const auto &number : leftIds) {
+    reps += number * std::ranges::count(rightIds, number);
   }
-  return sum;
+  return reps;
 }
 
 void HistorianHysteria::copyNumbers(std::vector<std::string> input) {

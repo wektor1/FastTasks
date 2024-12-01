@@ -9,7 +9,7 @@ public:
   unsigned long run(std::vector<std::string>);
 
 private:
-  unsigned long calculateDistanceSum();
+  unsigned long calculateRepetitionsSum();
   void copyNumbers(std::vector<std::string>);
   std::vector<unsigned long> leftIds{};
   std::vector<unsigned long> rightIds{};
