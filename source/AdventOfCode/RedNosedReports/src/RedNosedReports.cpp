@@ -1,23 +1,8 @@
 #include "RedNosedReports.hpp"
+#include "Utils/Parsers.hpp"
 #include <algorithm>
 
 namespace {
-constexpr auto digits{"0123456789"};
-
-std::vector<unsigned long> parseNumbersFromLine(std::string line) {
-  std::vector<unsigned long> result{};
-  auto endPosition{0};
-  auto startPosition{0};
-  do {
-    endPosition = line.find_first_not_of(digits);
-    auto number = std::stol(line.substr(startPosition, endPosition));
-    result.push_back(std::move(number));
-    line.erase(startPosition, endPosition + 1);
-  } while (endPosition != std::string::npos);
-
-  return result;
-}
-
 auto higherOrLowerPositive = [](auto difference) {
   return difference > 3 or difference < 1;
 };
@@ -30,7 +15,7 @@ auto higherOrLowerNegative = [](auto difference) {
 unsigned long RedNosedReports::run(const std::vector<std::string> &input) {
   unsigned long output{0};
   for (const auto &line : input) {
-    const auto report{parseNumbersFromLine(line)};
+    const auto report{parsers::parseNumbersFromLine(line)};
     auto differences{getDifferences(report)};
     if (differenceValidator(differences)) {
       output++;

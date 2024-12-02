@@ -1,3 +1,5 @@
+add_subdirectory(Utils)
+
 add_library(AdventOfCode-lib
     HistorianHysteria/src/HistorianHysteria.cpp
     RedNosedReports/src/RedNosedReports.cpp
@@ -12,3 +14,7 @@ target_include_directories(AdventOfCode-lib
     PUBLIC
     HistorianHysteria/inc
     RedNosedReports/inc)
+
+target_link_libraries(AdventOfCode-lib
+    PUBLIC
+    Utils-lib)
