@@ -7,7 +7,7 @@
 namespace {
 constexpr auto digits{"0123456789"};
 }
-unsigned long HistorianHysteria::run(std::vector<std::string> input) {
+unsigned long HistorianHysteria::run(const std::vector<std::string> &input) {
   copyNumbers(input);
   std::sort(leftIds.begin(), leftIds.end());
   std::sort(rightIds.begin(), rightIds.end());
@@ -24,7 +24,7 @@ unsigned long HistorianHysteria::calculateRepetitionsSum() {
   return reps;
 }
 
-void HistorianHysteria::copyNumbers(std::vector<std::string> input) {
+void HistorianHysteria::copyNumbers(const std::vector<std::string> &input) {
   leftIds.reserve(input.size());
   rightIds.reserve(input.size());
   for (const auto line : input) {

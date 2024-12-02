@@ -1,4 +1,4 @@
-#include "HistorianHysteria.hpp"
+#include "RedNosedReports.hpp"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -12,7 +12,7 @@ int main() {
   while (std::getline(file, temp)) {
     input.push_back(temp);
   }
-  HistorianHysteria day1{};
-  std::cout << "Result is: " << day1.run(input);
+  RedNosedReports day2{};
+  std::cout << "Result is: " << day2.run(input);
   return 0;
 }

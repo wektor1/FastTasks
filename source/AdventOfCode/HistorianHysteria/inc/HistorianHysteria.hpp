@@ -1,16 +1,15 @@
 #pragma once
 
-#include <set>
 #include <string>
 #include <vector>
 
 class HistorianHysteria {
 public:
-  unsigned long run(std::vector<std::string>);
+  unsigned long run(const std::vector<std::string> &);
 
 private:
   unsigned long calculateRepetitionsSum();
-  void copyNumbers(std::vector<std::string>);
+  void copyNumbers(const std::vector<std::string> &);
   std::vector<unsigned long> leftIds{};
   std::vector<unsigned long> rightIds{};
 };
