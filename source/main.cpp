@@ -1,4 +1,4 @@
-#include "RedNosedReports.hpp"
+#include "MullItOver.hpp"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -12,7 +12,7 @@ int main() {
   while (std::getline(file, temp)) {
     input.push_back(temp);
   }
-  RedNosedReports day2{};
-  std::cout << "Result is: " << day2.run(input);
+  MullItOver adventOvCode{};
+  std::cout << "Result is: " << adventOvCode.run(input);
   return 0;
 }
