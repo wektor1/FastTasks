@@ -1,4 +1,4 @@
-#include "CeresSearch.hpp"
+#include "PrintQueue.hpp"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -12,7 +12,7 @@ int main() {
   while (std::getline(file, temp)) {
     input.push_back(temp);
   }
-  CeresSearch adventOvCode{};
+  PrintQueue adventOvCode{};
   std::cout << "Result is: " << adventOvCode.run(input);
   return 0;
 }

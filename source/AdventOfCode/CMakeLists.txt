@@ -5,11 +5,13 @@ add_library(AdventOfCode-lib
     RedNosedReports/src/RedNosedReports.cpp
     MullItOver/src/MullItOver.cpp
     CeresSearch/src/CeresSearch.cpp
+    PrintQueue/src/PrintQueue.cpp
 
     HistorianHysteria/inc/HistorianHysteria.hpp
     RedNosedReports/inc/RedNosedReports.hpp
     MullItOver/inc/MullItOver.hpp
-    CeresSearch/inc/CeresSearch.hpp)
+    CeresSearch/inc/CeresSearch.hpp
+    PrintQueue/inc/PrintQueue.hpp)
 
 target_include_directories(AdventOfCode-lib
     PRIVATE
@@ -17,11 +19,13 @@ target_include_directories(AdventOfCode-lib
     RedNosedReports/src
     MullItOver/src
     CeresSearch/src
+    PrintQueue/src
     PUBLIC
     HistorianHysteria/inc
     RedNosedReports/inc
     MullItOver/inc
-    CeresSearch/inc)
+    CeresSearch/inc
+    PrintQueue/inc)
 
 target_link_libraries(AdventOfCode-lib
     PUBLIC
