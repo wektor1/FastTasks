@@ -12,8 +12,8 @@ auto higherOrLowerNegative = [](auto difference) {
 };
 } // namespace
 
-unsigned long RedNosedReports::run(const std::vector<std::string> &input) {
-  unsigned long output{0};
+unsigned long long RedNosedReports::run(const std::vector<std::string> &input) {
+  unsigned long long output{0};
   for (const auto &line : input) {
     const auto report{parsers::parseNumbersFromLine(line)};
     auto differences{getDifferences(report)};
@@ -35,7 +35,7 @@ unsigned long RedNosedReports::run(const std::vector<std::string> &input) {
 }
 
 std::vector<int>
-RedNosedReports::getDifferences(const std::vector<unsigned long> &report) {
+RedNosedReports::getDifferences(const std::vector<unsigned long long> &report) {
   std::vector<int> result;
   result.reserve(report.size() - 1);
   for (int i = 1; i < report.size(); i++) {
@@ -57,10 +57,9 @@ bool RedNosedReports::differenceValidator(const std::vector<int> &differences) {
   return isInRange and (isAscending or isDescending);
 }
 
-void RedNosedReports::recheckOnMistake(std::function<bool(int)> isMistake,
-                                       const std::vector<int> &differences,
-                                       const std::vector<unsigned long> &report,
-                                       unsigned long &result) {
+void RedNosedReports::recheckOnMistake(
+    std::function<bool(int)> isMistake, const std::vector<int> &differences,
+    const std::vector<unsigned long long> &report, unsigned long long &result) {
   for (int i = 0; i < differences.size(); i++) {
     if (isMistake(differences[i])) {
       auto reportRemoveBefore = report;

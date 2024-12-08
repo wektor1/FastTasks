@@ -7,13 +7,15 @@ add_library(AdventOfCode-lib
     CeresSearch/src/CeresSearch.cpp
     PrintQueue/src/PrintQueue.cpp
     GuardGallivant/src/GuardGallivant.cpp
+    BridgeRepair/src/BridgeRepair.cpp
 
     HistorianHysteria/inc/HistorianHysteria.hpp
     RedNosedReports/inc/RedNosedReports.hpp
     MullItOver/inc/MullItOver.hpp
     CeresSearch/inc/CeresSearch.hpp
     PrintQueue/inc/PrintQueue.hpp
-    GuardGallivant/inc/GuardGallivant.hpp)
+    GuardGallivant/inc/GuardGallivant.hpp
+    BridgeRepair/inc/BridgeRepair.hpp)
 
 target_include_directories(AdventOfCode-lib
     PRIVATE
@@ -23,13 +25,16 @@ target_include_directories(AdventOfCode-lib
     CeresSearch/src
     PrintQueue/src
     GuardGallivant/src
+    BridgeRepair/src
+
     PUBLIC
     HistorianHysteria/inc
     RedNosedReports/inc
     MullItOver/inc
     CeresSearch/inc
     PrintQueue/inc
-    GuardGallivant/inc)
+    GuardGallivant/inc
+    BridgeRepair/inc)
 
 target_link_libraries(AdventOfCode-lib
     PUBLIC

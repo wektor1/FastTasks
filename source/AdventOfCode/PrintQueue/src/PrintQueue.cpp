@@ -2,7 +2,7 @@
 #include "Utils/Parsers.hpp"
 #include <string>
 
-unsigned long PrintQueue::run(const std::vector<std::string> &input) {
+unsigned long long PrintQueue::run(const std::vector<std::string> &input) {
   processInput(input);
   return getResultFromUpdates();
 }
@@ -23,15 +23,16 @@ void PrintQueue::processInput(const std::vector<std::string> &input) {
   }
 }
 
-unsigned long PrintQueue::getResultFromUpdates() {
-  unsigned long result{0};
+unsigned long long PrintQueue::getResultFromUpdates() {
+  unsigned long long result{0};
   for (const auto &update : updates) {
     result += getResultIfCorrect(update);
   }
   return result;
 }
 
-unsigned long PrintQueue::getResultIfCorrect(std::vector<unsigned long> line) {
+unsigned long long
+PrintQueue::getResultIfCorrect(std::vector<unsigned long long> line) {
   bool isCorrect{true};
   for (int i = 0; i < line.size(); i++) {
     int j = i - 1;
