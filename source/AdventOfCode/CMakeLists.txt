@@ -8,6 +8,7 @@ add_library(AdventOfCode-lib
     PrintQueue/src/PrintQueue.cpp
     GuardGallivant/src/GuardGallivant.cpp
     BridgeRepair/src/BridgeRepair.cpp
+    ResonantCollinearity/src/ResonantCollinearity.cpp
 
     HistorianHysteria/inc/HistorianHysteria.hpp
     RedNosedReports/inc/RedNosedReports.hpp
@@ -15,7 +16,8 @@ add_library(AdventOfCode-lib
     CeresSearch/inc/CeresSearch.hpp
     PrintQueue/inc/PrintQueue.hpp
     GuardGallivant/inc/GuardGallivant.hpp
-    BridgeRepair/inc/BridgeRepair.hpp)
+    BridgeRepair/inc/BridgeRepair.hpp
+    ResonantCollinearity/inc/ResonantCollinearity.hpp)
 
 target_include_directories(AdventOfCode-lib
     PRIVATE
@@ -26,6 +28,7 @@ target_include_directories(AdventOfCode-lib
     PrintQueue/src
     GuardGallivant/src
     BridgeRepair/src
+    ResonantCollinearity/src
 
     PUBLIC
     HistorianHysteria/inc
@@ -34,7 +37,8 @@ target_include_directories(AdventOfCode-lib
     CeresSearch/inc
     PrintQueue/inc
     GuardGallivant/inc
-    BridgeRepair/inc)
+    BridgeRepair/inc
+    ResonantCollinearity/inc)
 
 target_link_libraries(AdventOfCode-lib
     PUBLIC
