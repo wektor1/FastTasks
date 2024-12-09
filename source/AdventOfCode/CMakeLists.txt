@@ -9,6 +9,7 @@ add_library(AdventOfCode-lib
     GuardGallivant/src/GuardGallivant.cpp
     BridgeRepair/src/BridgeRepair.cpp
     ResonantCollinearity/src/ResonantCollinearity.cpp
+    DiskFragmenter/src/DiskFragmenter.cpp
 
     HistorianHysteria/inc/HistorianHysteria.hpp
     RedNosedReports/inc/RedNosedReports.hpp
@@ -17,7 +18,8 @@ add_library(AdventOfCode-lib
     PrintQueue/inc/PrintQueue.hpp
     GuardGallivant/inc/GuardGallivant.hpp
     BridgeRepair/inc/BridgeRepair.hpp
-    ResonantCollinearity/inc/ResonantCollinearity.hpp)
+    ResonantCollinearity/inc/ResonantCollinearity.hpp
+    DiskFragmenter/inc/DiskFragmenter.hpp)
 
 target_include_directories(AdventOfCode-lib
     PRIVATE
@@ -29,6 +31,7 @@ target_include_directories(AdventOfCode-lib
     GuardGallivant/src
     BridgeRepair/src
     ResonantCollinearity/src
+    DiskFragmenter/src
 
     PUBLIC
     HistorianHysteria/inc
@@ -38,7 +41,8 @@ target_include_directories(AdventOfCode-lib
     PrintQueue/inc
     GuardGallivant/inc
     BridgeRepair/inc
-    ResonantCollinearity/inc)
+    ResonantCollinearity/inc
+    DiskFragmenter/inc)
 
 target_link_libraries(AdventOfCode-lib
     PUBLIC
