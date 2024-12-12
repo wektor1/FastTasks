@@ -12,6 +12,7 @@ add_library(AdventOfCode-lib
     DiskFragmenter/src/DiskFragmenter.cpp
     HoofIt/src/HoofIt.cpp
     PlutonianPebbles/src/PlutonianPebbles.cpp
+    GardenGroups/src/GardenGroups.cpp
 
     HistorianHysteria/inc/HistorianHysteria.hpp
     RedNosedReports/inc/RedNosedReports.hpp
@@ -23,7 +24,8 @@ add_library(AdventOfCode-lib
     ResonantCollinearity/inc/ResonantCollinearity.hpp
     DiskFragmenter/inc/DiskFragmenter.hpp
     HoofIt/inc/HoofIt.hpp
-    PlutonianPebbles/inc/PlutonianPebbles.hpp)
+    PlutonianPebbles/inc/PlutonianPebbles.hpp
+    GardenGroups/inc/GardenGroups.hpp)
 
 target_include_directories(AdventOfCode-lib
     PRIVATE
@@ -38,6 +40,7 @@ target_include_directories(AdventOfCode-lib
     DiskFragmenter/src
     HoofIt/src
     PlutonianPebbles/src
+    GardenGroups/src
 
     PUBLIC
     HistorianHysteria/inc
@@ -50,7 +53,8 @@ target_include_directories(AdventOfCode-lib
     ResonantCollinearity/inc
     DiskFragmenter/inc
     HoofIt/inc
-    PlutonianPebbles/inc)
+    PlutonianPebbles/inc
+    GardenGroups/inc)
 
 target_link_libraries(AdventOfCode-lib
     PUBLIC
