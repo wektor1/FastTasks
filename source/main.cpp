@@ -1,4 +1,4 @@
-#include "GardenGroups.hpp"
+#include "ClawContraption.hpp"
 #include <chrono>
 #include <filesystem>
 #include <fstream>
@@ -14,7 +14,7 @@ int main() {
   while (std::getline(file, temp)) {
     input.push_back(temp);
   }
-  GardenGroups adventOvCode{};
+  ClawContraption adventOvCode{};
   std::cout << "Result is: " << adventOvCode.run(input);
   auto stopTimer{std::chrono::high_resolution_clock::now()};
   auto duration{std::chrono::duration_cast<std::chrono::microseconds>(
