@@ -20,4 +20,23 @@ std::vector<unsigned long long> parseNumbersFromLine(std::string line) {
 
   return result;
 }
+
+std::vector<int> parseNumbersFromLineWithNegative(std::string line) {
+  std::vector<int> result{};
+  auto endPosition{0};
+  auto startPosition{0};
+  do {
+    startPosition = line.find_first_of(negativeDigits);
+    if (startPosition == std::string::npos) {
+      break;
+    }
+    endPosition = line.find_first_not_of(negativeDigits, startPosition);
+    auto number =
+        std::stoi(line.substr(startPosition, endPosition - startPosition));
+    result.push_back(std::move(number));
+    line.erase(startPosition, endPosition + 1 - startPosition);
+  } while (endPosition != std::string::npos);
+
+  return result;
+}
 } // namespace parsers

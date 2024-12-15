@@ -14,6 +14,7 @@ add_library(AdventOfCode-lib
     PlutonianPebbles/src/PlutonianPebbles.cpp
     GardenGroups/src/GardenGroups.cpp
     ClawContraption/src/ClawContraption.cpp
+    RestroomRedoubt/src/RestroomRedoubt.cpp
 
     HistorianHysteria/inc/HistorianHysteria.hpp
     RedNosedReports/inc/RedNosedReports.hpp
@@ -27,7 +28,8 @@ add_library(AdventOfCode-lib
     HoofIt/inc/HoofIt.hpp
     PlutonianPebbles/inc/PlutonianPebbles.hpp
     GardenGroups/inc/GardenGroups.hpp
-    ClawContraption/inc/ClawContraption.hpp)
+    ClawContraption/inc/ClawContraption.hpp
+    RestroomRedoubt/inc/RestroomRedoubt.hpp)
 
 target_include_directories(AdventOfCode-lib
     PRIVATE
@@ -44,6 +46,7 @@ target_include_directories(AdventOfCode-lib
     PlutonianPebbles/src
     GardenGroups/src
     ClawContraption/src
+    RestroomRedoubt/src
 
     PUBLIC
     HistorianHysteria/inc
@@ -58,7 +61,8 @@ target_include_directories(AdventOfCode-lib
     HoofIt/inc
     PlutonianPebbles/inc
     GardenGroups/inc
-    ClawContraption/inc)
+    ClawContraption/inc
+    RestroomRedoubt/inc)
 
 target_link_libraries(AdventOfCode-lib
     PUBLIC
