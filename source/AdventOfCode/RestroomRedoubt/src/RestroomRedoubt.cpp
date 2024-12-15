@@ -37,11 +37,6 @@ void RestroomRedoubt::moveAllRobotsInTime() {
     std::map<std::pair<int, int>, int> positionsCount{};
     for (auto &robot : robots) {
       moveSecond(robot);
-      if (positionsCount.contains(robot.start)) {
-        positionsCount[robot.start]++;
-      } else {
-        positionsCount[robot.start] = 0;
-      }
     }
     unsigned long long newWin = getSafetyFactor();
     if (possibleWin >= newWin) {

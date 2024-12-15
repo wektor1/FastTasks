@@ -11,6 +11,7 @@ Enclosure signToEnclosureMapper(const char sign) {
     return Enclosure::brackets;
   case '{':
   case '}':
+  default:
     return Enclosure::braces;
   }
 }
