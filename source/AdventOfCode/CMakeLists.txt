@@ -16,6 +16,7 @@ add_library(AdventOfCode-lib
     ClawContraption/src/ClawContraption.cpp
     RestroomRedoubt/src/RestroomRedoubt.cpp
     WarehouseWoes/src/WarehouseWoes.cpp
+    ReindeerMaze/src/ReindeerMaze.cpp
 
     HistorianHysteria/inc/HistorianHysteria.hpp
     RedNosedReports/inc/RedNosedReports.hpp
@@ -31,7 +32,8 @@ add_library(AdventOfCode-lib
     GardenGroups/inc/GardenGroups.hpp
     ClawContraption/inc/ClawContraption.hpp
     RestroomRedoubt/inc/RestroomRedoubt.hpp
-    WarehouseWoes/inc/WarehouseWoes.hpp)
+    WarehouseWoes/inc/WarehouseWoes.hpp
+    ReindeerMaze/inc/ReindeerMaze.hpp)
 
 target_include_directories(AdventOfCode-lib
     PRIVATE
@@ -50,6 +52,7 @@ target_include_directories(AdventOfCode-lib
     ClawContraption/src
     RestroomRedoubt/src
     WarehouseWoes/src
+    ReindeerMaze/src
 
     PUBLIC
     HistorianHysteria/inc
@@ -66,7 +69,8 @@ target_include_directories(AdventOfCode-lib
     GardenGroups/inc
     ClawContraption/inc
     RestroomRedoubt/inc
-    WarehouseWoes/inc)
+    WarehouseWoes/inc
+    ReindeerMaze/inc)
 
 target_link_libraries(AdventOfCode-lib
     PUBLIC
