@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <functional>
 #include <iterator>
+#include <vector>
 
 namespace {
 
@@ -19,7 +20,7 @@ Direction getDirection(const ReindeerMaze::Position &first,
 
 unsigned long long ReindeerMaze::run(const std::vector<std::string> &input) {
   saveMap(input);
-  return getScoreFromBestTrack();
+  return getBestSpots();
 }
 
 void ReindeerMaze::saveMap(const std::vector<std::string> &input) {
@@ -52,19 +53,30 @@ void ReindeerMaze::saveMap(const std::vector<std::string> &input) {
   }
 }
 
-unsigned long long ReindeerMaze::getScoreFromBestTrack() {
+unsigned long long ReindeerMaze::getBestSpots() {
   Direction moveDirection{Direction::east};
-  tracks.emplace_back(std::vector<Position>{startPosition}, 0, Direction::east);
-  tracks.emplace_back(std::vector<Position>{startPosition}, 0,
-                      Direction::north);
+  tracks[0].emplace_back(std::vector<Position>{startPosition}, Direction::east);
+  tracks[0].emplace_back(std::vector<Position>{startPosition},
+                         Direction::north);
   do {
-    tracks.reserve(tracks.size() + 3);
-    continueTrack();
-    std::ranges::sort(tracks, [](auto first, auto second) {
-      return first.score < second.score;
-    });
-  } while (tracks[0].track.back() != endPosition);
-  return tracks[0].score;
+    auto firstNode = tracks.extract(tracks.begin());
+    auto crawlers{std::move(firstNode.mapped())};
+    for (int i = 0; i < crawlers.size(); i++) {
+      continueTrack(firstNode.key(), std::move(crawlers[i]));
+    }
+  } while (
+      std::ranges::none_of(tracks.begin()->second, [this](const auto &crawler) {
+        return crawler.track.back() == endPosition;
+      }));
+  auto bestScore = tracks.begin()->first;
+  std::set<Position> bestSpots{};
+  for (const auto &crawler : tracks.begin()->second) {
+    if (crawler.track.back() == endPosition) {
+      bestSpots.insert(crawler.track.begin(), crawler.track.end());
+    }
+  }
+
+  return bestSpots.size();
 }
 
 std::vector<Direction>
@@ -89,9 +101,10 @@ ReindeerMaze::getDirectionsCrossroad(const Position &position, Direction dir) {
   return directions;
 }
 
-void ReindeerMaze::continueTrack() {
+void ReindeerMaze::continueTrack(unsigned long long score,
+                                 TrackCrawler crawler) {
   std::function<void(Position &)> goForward;
-  switch (tracks[0].direction) {
+  switch (crawler.direction) {
   case Direction::north:
     goForward = [](Position &position) { position.first--; };
     break;
@@ -107,57 +120,57 @@ void ReindeerMaze::continueTrack() {
   default:
     return;
   }
-  auto nextPosition = tracks[0].track.back();
+  auto nextPosition = crawler.track.back();
   goForward(nextPosition);
   if (map[nextPosition.first][nextPosition.second] == MapSign::track and
-      not std::ranges::contains(tracks[0].track, nextPosition)) {
-    tracks[0].track.push_back(nextPosition);
-    tracks[0].score = countScore(tracks[0].track);
-    if (auto dirs = getDirectionsCrossroad(nextPosition, tracks[0].direction);
+      not std::ranges::contains(crawler.track, nextPosition)) {
+    crawler.track.push_back(nextPosition);
+    auto score = countScore(crawler.track);
+    if (auto dirs = getDirectionsCrossroad(nextPosition, crawler.direction);
         not(dirs.empty() or alreadyVisited.contains(nextPosition))) {
       alreadyVisited.insert(nextPosition);
-      tracks[0].direction = dirs.back();
+      crawler.direction = dirs.back();
       dirs.pop_back();
       for (const auto &dir : dirs) {
-        tracks.emplace(tracks.begin(), tracks[0].track, tracks[0].score, dir);
+        tracks[score].emplace_back(crawler.track, dir);
       }
+      tracks[score].push_back(std::move(crawler));
     } else {
       if (dirs.size() == 1) {
-        auto iter = std::find_if(tracks.rbegin(), tracks.rend(),
-                                 [nextPosition](const auto &trackCrawler) {
-                                   return std::ranges::contains(
-                                       trackCrawler.track, nextPosition);
-                                 });
-        std::vector<Position> temp{};
-        std::copy(iter->track.begin(),
-                  std::ranges::find(iter->track, nextPosition) + 1,
-                  std::back_inserter(temp));
-        if (countScore(temp) < tracks[0].score) {
-          tracks.erase(tracks.begin());
-        } else {
-          tracks[0].direction = dirs.back();
-          dirs.pop_back();
-          tracks.erase((iter + 1).base());
-          for (const auto &dir : dirs) {
-            tracks.emplace(tracks.begin(), tracks[0].track, tracks[0].score,
-                           dir);
+        for (auto &trackNode : tracks) {
+          auto iter = std::find_if(
+              trackNode.second.begin(), trackNode.second.end(),
+              [nextPosition](const auto &trackCrawler) {
+                return std::ranges::contains(trackCrawler.track, nextPosition);
+              });
+          if (iter != trackNode.second.end()) {
+            std::vector<Position> temp{};
+            std::copy(iter->track.begin(),
+                      std::ranges::find(iter->track, nextPosition) + 1,
+                      std::back_inserter(temp));
+            auto tempScore = countScore(temp);
+            if (tempScore < score) {
+              return;
+            } else if (score < tempScore) {
+              trackNode.second.erase(iter);
+            }
           }
         }
+        crawler.direction = dirs.back();
+        tracks[score].push_back(std::move(crawler));
         return;
       }
-      if (alreadyVisited.contains(nextPosition) and dirs.size() > 1) {
-        tracks[0].direction = dirs.back();
+      if (dirs.size() > 1) {
+        crawler.direction = dirs.back();
         dirs.pop_back();
         for (const auto &dir : dirs) {
-          tracks.emplace(tracks.begin(), tracks[0].track, tracks[0].score, dir);
+          tracks[score].emplace_back(crawler.track, dir);
         }
-      } else {
-        tracks.erase(tracks.begin());
+        tracks[score].push_back(std::move(crawler));
       }
     }
     return;
   }
-  tracks.erase(tracks.begin());
 }
 
 unsigned long long

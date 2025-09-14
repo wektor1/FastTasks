@@ -1,1 +1,2 @@
 add_subdirectory(BracesValidator)
+add_subdirectory(LeetCodeDailyTasks)
